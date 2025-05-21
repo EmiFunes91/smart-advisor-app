@@ -23,8 +23,3 @@ def root():
 
 # Montar las rutas principales con prefijo
 app.include_router(ask.router, prefix="/api/ask", tags=["SmartAdvisor"])
-
-# Configuracion Railway
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000)
