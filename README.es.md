@@ -1,18 +1,26 @@
 # 🤖 Smart Advisor API
 
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-blue?style=flat&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue?style=flat&logo=postgresql)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 API desarrollada con **FastAPI + PostgreSQL**, diseñada para actuar como un asistente inteligente que responde preguntas y guarda el historial de interacciones.
 
 > Actualmente en modo simulado para evitar costos de uso de OpenAI. Puede integrarse fácilmente con GPT-3.5 más adelante.
+> 
+> 🌐 Desplegada en: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
 
 ---
 
 ## 🚀 Características
 
 - [x] API RESTful con FastAPI
-- [x] Persistencia en PostgreSQL
+- [x] Persistencia en PostgreSQL con timestamps UTC
 - [x] Documentación Swagger (`/docs`) y Redoc (`/redoc`)
-- [x] Endpoint de preguntas simuladas
-- [x] Historial completo de interacciones
+- [x] Endpoint de preguntas simuladas con respuestas contextuales
+- [x] Historial completo de interacciones con manejo de errores
+- [x] Soporte UTF-8 y manejo de caracteres especiales
+- [x] Manejo robusto de errores y registro de logs
 - [ ] Integración con OpenAI (opcional)
 
 ---
@@ -22,10 +30,31 @@ API desarrollada con **FastAPI + PostgreSQL**, diseñada para actuar como un asi
 | Método | Endpoint              | Descripción                             |
 |--------|-----------------------|-----------------------------------------|
 | `GET`  | `/`                   | Información general de la API           |
-| `POST` | `/api/ask/`           | Enviar una pregunta al asistente       |
-| `GET`  | `/api/ask/history`    | Obtener historial de preguntas/respuestas |
+| `POST` | `/api/ask/`           | Enviar una pregunta al asistente (con soporte UTF-8) |
+| `GET`  | `/api/ask/history`    | Obtener historial de preguntas/respuestas con timestamps UTC |
 | `GET`  | `/docs`               | Documentación Swagger                   |
 | `GET`  | `/redoc`              | Documentación alternativa (ReDoc)       |
+
+> Nota: Todos los endpoints incluyen manejo robusto de errores y registro de logs. El endpoint `/api/ask/` proporciona respuestas simuladas contextuales, especialmente para preguntas relacionadas con clientes.
+
+---
+
+## 🧪 Prueba Rápida
+
+Prueba la API inmediatamente con curl:
+
+```bash
+curl -X POST https://smart-advisor-api-production.up.railway.app/api/ask/ \
+  -H "Content-Type: application/json" \
+  -d '{"question": "¿Cómo puedo encontrar clientes freelance?"}'
+```
+
+Respuesta esperada:
+```json
+{
+  "answer": "Puedes atraer más clientes mejorando tu perfil profesional, mostrando proyectos reales y participando activamente en comunidades técnicas."
+}
+```
 
 ---
 

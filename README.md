@@ -1,18 +1,26 @@
 # 🤖 Smart Advisor API
 
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-blue?style=flat&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue?style=flat&logo=postgresql)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent assistant that answers questions and maintains interaction history.
 
 > Currently in simulation mode to avoid OpenAI usage costs. Can be easily integrated with GPT-3.5 later.
+> 
+> 🌐 Deployed at: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
 
 ---
 
 ## 🚀 Features
 
 - [x] RESTful API with FastAPI
-- [x] PostgreSQL persistence
+- [x] PostgreSQL persistence with UTC timestamps
 - [x] Swagger (`/docs`) and Redoc (`/redoc`) documentation
-- [x] Simulated question endpoint
-- [x] Complete interaction history
+- [x] Simulated question endpoint with context-aware responses
+- [x] Complete interaction history with error handling
+- [x] UTF-8 support and special character handling
+- [x] Robust error handling and logging
 - [ ] OpenAI integration (optional)
 
 ---
@@ -22,10 +30,31 @@ API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent a
 | Method | Endpoint              | Description                             |
 |--------|-----------------------|-----------------------------------------|
 | `GET`  | `/`                   | General API information                 |
-| `POST` | `/api/ask/`           | Send a question to the assistant        |
-| `GET`  | `/api/ask/history`    | Get question/answer history             |
+| `POST` | `/api/ask/`           | Send a question to the assistant (with UTF-8 support) |
+| `GET`  | `/api/ask/history`    | Get question/answer history with UTC timestamps |
 | `GET`  | `/docs`               | Swagger documentation                   |
 | `GET`  | `/redoc`              | Alternative documentation (ReDoc)       |
+
+> Note: All endpoints include robust error handling and logging. The `/api/ask/` endpoint provides context-aware simulated responses, especially for client-related questions.
+
+---
+
+## 🧪 Quick Test
+
+Try the API right away with curl:
+
+```bash
+curl -X POST https://smart-advisor-api-production.up.railway.app/api/ask/ \
+  -H "Content-Type: application/json" \
+  -d '{"question": "How can I find freelance clients?"}'
+```
+
+Expected response:
+```json
+{
+  "answer": "Puedes atraer más clientes mejorando tu perfil profesional, mostrando proyectos reales y participando activamente en comunidades técnicas."
+}
+```
 
 ---
 
