@@ -127,6 +127,13 @@ smart_advisor_api/
 └── README.md            # This file
 ```
 
+## 🔮 Next Steps
+
+- **Optional OpenAI Integration** — Seamless upgrade to GPT-3.5/4 by switching the environment variable
+- **Authentication & Role-Based Access** — Future roadmap includes user auth, rate limiting, and admin roles
+- **Frontend Client** — Planned integration with a modern UI (e.g., React or Next.js) for user-facing interaction
+- **CI/CD & Dockerization** — Automate deployments with GitHub Actions and Docker support for staging and production
+
 ## 👨‍💻 Credits
 Developed by Emilio Funes
 
