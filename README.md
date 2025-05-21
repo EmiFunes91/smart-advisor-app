@@ -3,12 +3,15 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-blue?style=flat&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue?style=flat&logo=postgresql)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Release](https://img.shields.io/badge/Release-v1.0-green)
 
-API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent assistant that answers questions and maintains interaction history.
+API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent assistant that answers questions and maintains interaction history. This is a production-ready release (v1.0) that provides a robust foundation for intelligent Q&A interactions.
 
 > Currently in simulation mode to avoid OpenAI usage costs. Can be easily integrated with GPT-3.5 later.
 > 
-> 🌐 Deployed at: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
+> 🌐 Production URL: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
+> 
+> 📦 Latest Release: [v1.0](https://github.com/EmiFunes91/smart-advisor-api/releases/tag/v1.0)
 
 ---
 
@@ -21,27 +24,16 @@ API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent a
 - [x] Complete interaction history with error handling
 - [x] UTF-8 support and special character handling
 - [x] Robust error handling and logging
+- [x] Production deployment on Railway
 - [ ] OpenAI integration (optional)
 
 ---
 
-## 🧪 Available Endpoints
+## 🧪 Quick Start
 
-| Method | Endpoint              | Description                             |
-|--------|-----------------------|-----------------------------------------|
-| `GET`  | `/`                   | General API information                 |
-| `POST` | `/api/ask/`           | Send a question to the assistant (with UTF-8 support) |
-| `GET`  | `/api/ask/history`    | Get question/answer history with UTC timestamps |
-| `GET`  | `/docs`               | Swagger documentation                   |
-| `GET`  | `/redoc`              | Alternative documentation (ReDoc)       |
+### Test the API
 
-> Note: All endpoints include robust error handling and logging. The `/api/ask/` endpoint provides context-aware simulated responses, especially for client-related questions.
-
----
-
-## 🧪 Quick Test
-
-Try the API right away with curl:
+Try it right away with curl:
 
 ```bash
 curl -X POST https://smart-advisor-api-production.up.railway.app/api/ask/ \
@@ -56,18 +48,7 @@ Expected response:
 }
 ```
 
----
-
-## 🛠️ Requirements
-
-- Python 3.10+
-- PostgreSQL 12+
-- Pipenv or virtual environment
-- OpenAI API Key (optional)
-
----
-
-## ⚙️ Installation and Local Execution
+### Local Development
 
 1. **Clone the repository**
 ```bash
@@ -104,6 +85,22 @@ PYTHONPATH=. python app/db/init_db.py
 ```bash
 uvicorn app.main:app --reload
 ```
+
+---
+
+## 🧪 Available Endpoints
+
+| Method | Endpoint              | Description                             |
+|--------|-----------------------|-----------------------------------------|
+| `GET`  | `/`                   | General API information                 |
+| `POST` | `/api/ask/`           | Send a question to the assistant (with UTF-8 support) |
+| `GET`  | `/api/ask/history`    | Get question/answer history with UTC timestamps |
+| `GET`  | `/docs`               | Swagger documentation                   |
+| `GET`  | `/redoc`              | Alternative documentation (ReDoc)       |
+
+> Note: All endpoints include robust error handling and logging. The `/api/ask/` endpoint provides context-aware simulated responses, especially for client-related questions.
+
+---
 
 ## 📁 Project Structure
 

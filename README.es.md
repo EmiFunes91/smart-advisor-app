@@ -3,12 +3,15 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-blue?style=flat&logo=fastapi)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue?style=flat&logo=postgresql)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Release](https://img.shields.io/badge/Release-v1.0-green)
 
-API desarrollada con **FastAPI + PostgreSQL**, diseñada para actuar como un asistente inteligente que responde preguntas y guarda el historial de interacciones.
+API desarrollada con **FastAPI + PostgreSQL**, diseñada para actuar como un asistente inteligente que responde preguntas y guarda el historial de interacciones. Esta es una versión estable (v1.0) que proporciona una base sólida para interacciones inteligentes de preguntas y respuestas.
 
 > Actualmente en modo simulado para evitar costos de uso de OpenAI. Puede integrarse fácilmente con GPT-3.5 más adelante.
 > 
-> 🌐 Desplegada en: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
+> 🌐 URL de Producción: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
+> 
+> 📦 Última Versión: [v1.0](https://github.com/EmiFunes91/smart-advisor-api/releases/tag/v1.0)
 
 ---
 
@@ -21,27 +24,16 @@ API desarrollada con **FastAPI + PostgreSQL**, diseñada para actuar como un asi
 - [x] Historial completo de interacciones con manejo de errores
 - [x] Soporte UTF-8 y manejo de caracteres especiales
 - [x] Manejo robusto de errores y registro de logs
+- [x] Despliegue en producción en Railway
 - [ ] Integración con OpenAI (opcional)
 
 ---
 
-## 🧪 Endpoints disponibles
+## 🧪 Inicio Rápido
 
-| Método | Endpoint              | Descripción                             |
-|--------|-----------------------|-----------------------------------------|
-| `GET`  | `/`                   | Información general de la API           |
-| `POST` | `/api/ask/`           | Enviar una pregunta al asistente (con soporte UTF-8) |
-| `GET`  | `/api/ask/history`    | Obtener historial de preguntas/respuestas con timestamps UTC |
-| `GET`  | `/docs`               | Documentación Swagger                   |
-| `GET`  | `/redoc`              | Documentación alternativa (ReDoc)       |
+### Probar la API
 
-> Nota: Todos los endpoints incluyen manejo robusto de errores y registro de logs. El endpoint `/api/ask/` proporciona respuestas simuladas contextuales, especialmente para preguntas relacionadas con clientes.
-
----
-
-## 🧪 Prueba Rápida
-
-Prueba la API inmediatamente con curl:
+Pruébala inmediatamente con curl:
 
 ```bash
 curl -X POST https://smart-advisor-api-production.up.railway.app/api/ask/ \
@@ -56,18 +48,7 @@ Respuesta esperada:
 }
 ```
 
----
-
-## 🛠️ Requisitos
-
-- Python 3.10+
-- PostgreSQL 12+
-- Pipenv o entorno virtual
-- OpenAI API Key (opcional)
-
----
-
-## ⚙️ Instalación y ejecución local
+### Desarrollo Local
 
 1. **Clonar el repositorio**
 ```bash
@@ -105,6 +86,22 @@ PYTHONPATH=. python app/db/init_db.py
 uvicorn app.main:app --reload
 ```
 
+---
+
+## 🧪 Endpoints disponibles
+
+| Método | Endpoint              | Descripción                             |
+|--------|-----------------------|-----------------------------------------|
+| `GET`  | `/`                   | Información general de la API           |
+| `POST` | `/api/ask/`           | Enviar una pregunta al asistente (con soporte UTF-8) |
+| `GET`  | `/api/ask/history`    | Obtener historial de preguntas/respuestas con timestamps UTC |
+| `GET`  | `/docs`               | Documentación Swagger                   |
+| `GET`  | `/redoc`              | Documentación alternativa (ReDoc)       |
+
+> Nota: Todos los endpoints incluyen manejo robusto de errores y registro de logs. El endpoint `/api/ask/` proporciona respuestas simuladas contextuales, especialmente para preguntas relacionadas con clientes.
+
+---
+
 ## 📁 Estructura del proyecto
 
 ```
@@ -126,6 +123,13 @@ smart_advisor_api/
 ├── requirements.txt      # Dependencias del proyecto
 └── README.md            # Este archivo
 ```
+
+## 🔮 Próximos Pasos
+
+- **Integración Opcional con OpenAI** — Actualización sin problemas a GPT-3.5/4 mediante variable de entorno
+- **Autenticación y Control de Acceso** — Planificación de autenticación de usuarios, límites de tasa y roles administrativos
+- **Cliente Frontend** — Integración planificada con una interfaz moderna (ej. React o Next.js) para interacción con usuarios
+- **CI/CD y Dockerización** — Automatización de despliegues con GitHub Actions y soporte Docker para staging y producción
 
 ## 👨‍💻 Créditos
 Desarrollado por Emilio Funes
