@@ -29,7 +29,7 @@ export function AskForm({ onResponse }: AskFormProps) {
 
     setLoading(true);
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/ask`, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/ask`, {
         question,
       });
       onResponse(res.data.answer);

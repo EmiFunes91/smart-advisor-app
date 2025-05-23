@@ -7,6 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: false
 });
 
 // Interceptor para errores globales
@@ -20,19 +21,8 @@ api.interceptors.response.use(
 
 // Enviar pregunta
 export const askQuestion = async (question: string): Promise<AskResponse> => {
-  const response = await fetch('/api/ask', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ question }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Error al hacer la pregunta');
-  }
-
-  return response.json();
+  const { data } = await api.post<AskResponse>('/api/ask', { question });
+  return data;
 };
 
 // Obtener historial

@@ -5,4 +5,8 @@ export interface Question {
   createdAt: string;
 }
 
+export interface AskResponse {
+  answer: string;
+}
+
 export interface AskQuestionResponse extends Question {}
