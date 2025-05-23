@@ -1,140 +1,72 @@
-# 🤖 Smart Advisor API
+# Smart Advisor App
 
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-blue?style=flat&logo=fastapi)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue?style=flat&logo=postgresql)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Release](https://img.shields.io/badge/Release-v1.0-green)
+## Descripción
+Smart Advisor App es una aplicación web moderna que proporciona asesoramiento inteligente a través de una interfaz intuitiva y una API robusta. El proyecto está estructurado como una aplicación full-stack con frontend en React y backend en Python.
 
-API developed with **FastAPI + PostgreSQL**, designed to act as an intelligent assistant that answers questions and maintains interaction history. This is a production-ready release (v1.0) that provides a robust foundation for intelligent Q&A interactions.
-
-> Currently in simulation mode to avoid OpenAI usage costs. Can be easily integrated with GPT-3.5 later.
-> 
-> 🌐 Production URL: [smart-advisor-api-production.up.railway.app](https://smart-advisor-api-production.up.railway.app)
-> 
-> 📦 Latest Release: [v1.0](https://github.com/EmiFunes91/smart-advisor-api/releases/tag/v1.0)
-
----
-
-## 🚀 Features
-
-- [x] RESTful API with FastAPI
-- [x] PostgreSQL persistence with UTC timestamps
-- [x] Swagger (`/docs`) and Redoc (`/redoc`) documentation
-- [x] Simulated question endpoint with context-aware responses
-- [x] Complete interaction history with error handling
-- [x] UTF-8 support and special character handling
-- [x] Robust error handling and logging
-- [x] Production deployment on Railway
-- [ ] OpenAI integration (optional)
-
----
-
-## 🧪 Quick Start
-
-### Test the API
-
-Try it right away with curl:
-
-```bash
-curl -X POST https://smart-advisor-api-production.up.railway.app/api/ask/ \
-  -H "Content-Type: application/json" \
-  -d '{"question": "How can I find freelance clients?"}'
+## Estructura del Proyecto
+```
+smart-advisor-app/
+├── frontend/           # Aplicación React
+│   ├── public/        # Archivos estáticos
+│   └── src/           # Código fuente de React
+├── backend/           # API Python
+│   ├── app/          # Código fuente de la API
+│   ├── requirements.txt  # Dependencias de Python
+│   └── Procfile      # Configuración para despliegue
+└── venv/             # Entorno virtual de Python
 ```
 
-Expected response:
-```json
-{
-  "answer": "Puedes atraer más clientes mejorando tu perfil profesional, mostrando proyectos reales y participando activamente en comunidades técnicas."
-}
-```
+## Requisitos Previos
+- Node.js (v14 o superior)
+- Python 3.8 o superior
+- Git
 
-### Local Development
+## Configuración del Entorno
 
-1. **Clone the repository**
+### Backend
+1. Crear y activar el entorno virtual:
 ```bash
-git clone https://github.com/emiliofbb/smart-advisor-api.git
-cd smart-advisor-api
-```
-
-2. **Set up virtual environment**
-```bash
+cd backend
 python -m venv venv
-source venv/Scripts/activate  # On Windows
-# Or on Linux/Mac:
-# source venv/bin/activate
+source venv/bin/activate  # En Windows: venv\Scripts\activate
 ```
 
-3. **Install dependencies**
+2. Instalar dependencias:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. **Configure environment variables**
+3. Iniciar el servidor de desarrollo:
 ```bash
-# Create .env file with:
-DATABASE_URL=postgresql://postgres:your_password@localhost:5432/smartadvisor
-OPENAI_API_KEY=sk-your-api-key-here  # Optional
+python app/main.py
 ```
 
-5. **Initialize database**
+### Frontend
+1. Instalar dependencias:
 ```bash
-PYTHONPATH=. python app/db/init_db.py
+cd frontend
+npm install
 ```
 
-6. **Run server**
+2. Iniciar el servidor de desarrollo:
 ```bash
-uvicorn app.main:app --reload
+npm start
 ```
 
----
+## Documentación
+- [Documentación de la API](./backend/README.api.es.md)
+- [Documentación del Frontend](./frontend/README.md)
 
-## 🧪 Available Endpoints
+## Desarrollo
+- El backend corre en `http://localhost:5000` por defecto
+- El frontend corre en `http://localhost:3000` por defecto
 
-| Method | Endpoint              | Description                             |
-|--------|-----------------------|-----------------------------------------|
-| `GET`  | `/`                   | General API information                 |
-| `POST` | `/api/ask/`           | Send a question to the assistant (with UTF-8 support) |
-| `GET`  | `/api/ask/history`    | Get question/answer history with UTC timestamps |
-| `GET`  | `/docs`               | Swagger documentation                   |
-| `GET`  | `/redoc`              | Alternative documentation (ReDoc)       |
+## Contribución
+1. Fork el repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
-> Note: All endpoints include robust error handling and logging. The `/api/ask/` endpoint provides context-aware simulated responses, especially for client-related questions.
-
----
-
-## 📁 Project Structure
-
-```
-smart_advisor_api/
-├── app/
-│   ├── main.py           # FastAPI main configuration
-│   ├── config.py         # Environment configuration
-│   ├── routes/
-│   │   └── ask.py       # Question and history endpoints
-│   ├── services/
-│   │   └── openai_service.py  # AI service (simulated)
-│   ├── models/
-│   │   ├── schemas.py   # Pydantic models
-│   │   └── models.py    # SQLAlchemy models
-│   └── db/
-│       ├── database.py  # Database configuration
-│       ├── deps.py      # Database dependencies
-│       └── init_db.py   # Initialization script
-├── requirements.txt      # Project dependencies
-└── README.md            # This file
-```
-
-## 🔮 Next Steps
-
-- **Optional OpenAI Integration** — Seamless upgrade to GPT-3.5/4 by switching the environment variable
-- **Authentication & Role-Based Access** — Future roadmap includes user auth, rate limiting, and admin roles
-- **Frontend Client** — Planned integration with a modern UI (e.g., React or Next.js) for user-facing interaction
-- **CI/CD & Dockerization** — Automate deployments with GitHub Actions and Docker support for staging and production
-
-## 👨‍💻 Credits
-Developed by Emilio Funes
-
-## 📄 License
-This project is distributed under the MIT license.
-
-> 🇪🇸 Prefer this in Spanish? [View README in Spanish](./README.es.md)
+## Licencia
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles. 
